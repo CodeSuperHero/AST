@@ -10,7 +10,6 @@ using static Infinity.ECS.Authoring.HumanAuthoring;
 
 namespace Assets.Scripts.Infinity.ECS.System
 {
-    [BurstCompile]
     public partial struct CreateEntitySys : ISystem
     {
         
@@ -32,7 +31,7 @@ namespace Assets.Scripts.Infinity.ECS.System
                 var units = state.EntityManager.Instantiate(item.human, 500, Allocator.Temp);
                 for (int i = 0; i < units.Length; i++)
                 {
-                    var entity = ecb.CreateEntity();
+                    var entity = ecb.Instantiate(item.human);
                     var v = random.NextFloat();
                     ecb.AddComponent(entity, LocalTransform.FromPosition(new float3(v * 10.8f - 5.4f, v * 19.20f - 9.6f, 0f)));
                     //ecb.AddComponent(entity, LocalTransform.FromPosition(new float3(v * 10.8f - 5.4f, v * 19.20f - 9.6f, 0f)));
